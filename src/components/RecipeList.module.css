@@ -1,0 +1,94 @@
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white, white);
+  padding: 15px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.recipe-card.dark {
+  background: grey;
+}
+
+.recipe-card.dark h2,
+.recipe-card.dark p,
+.recipe-card.dark h4 {
+  color: #ededed;
+}
+
+.recipe-card:hover {
+  background: whitesmoke;
+  box-shadow: none;
+}
+
+.recipe-card.dark:hover {
+  background: darkgray;
+  box-shadow: none;
+}
+
+.recipe-card img {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card h2 {
+  margin-bottom: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.recipe-card h2::after {
+  content: "";
+  width: 79px;
+  height: 3px;
+  background: var(--blue, turquoise);
+  position: absolute;
+  left: 47%;
+  bottom: 1px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.recipe-card p {
+  color: #777;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.recipe-card h4 {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.recipe-card a.btn-link {
+  color: var(--black, black);
+  border-color: var(--black, black);
+  background: rgba(0, 0, 0, 0.05);
+  margin-top: auto;
+  transition: all 0.2s ease;
+}
+.recipe-card a.btn-link:hover {
+  background: var(--orange);
+}
+
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -20px;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 20px;
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column > div {
+  margin-bottom: 20px;
+}

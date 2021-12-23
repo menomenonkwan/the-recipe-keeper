@@ -1,0 +1,74 @@
+.create-form {
+  padding: 15px 25px;
+  background: #555;
+  max-width: 500px;
+  margin: 0 auto;
+  color: var(--white, white);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.create-form fieldset {
+  margin-top: 20px;
+  text-align: left;
+  border: transparent;
+}
+
+.create-form h2 {
+  font-size: 2em;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.create-form input,
+.create-form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 5px;
+  outline: transparent;
+  border: 1px solid var(--white, white);
+  border-radius: 4px;
+}
+
+.create-form input:focus,
+.create-form textarea:focus {
+  border-color: var(--blue, turquoise);
+}
+
+.create-form p {
+  font-size: 1.25em;
+  margin-bottom: 3px;
+}
+
+.create-form .ingredient {
+  display: flex;
+}
+
+.create-form .ingredient input {
+  border-radius: 4px 0 0 4px;
+}
+
+.create-form .ingredient button {
+  font-family: inherit;
+  border: none;
+  padding: 0 20px;
+  border-radius: 0 4px 4px 0;
+  background: var(--orange);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.create-form p.ingredients-list {
+  font-size: 0.9em;
+  margin-top: 2px;
+  color: #dedede;
+}
+
+.create-form .btn {
+  background: var(--blue, turquoise);
+  margin-top: 20px;
+  font-family: inherit;
+  font-size: 1.1em;
+  cursor: pointer;
+  border: none;
+  min-width: 50%;
+}

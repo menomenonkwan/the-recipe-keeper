@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /recipies/{document=**} {
+
+      // only auth
+      allow create, delete, update: if request.auth != null;
+
+      // any can read
+      allow read;
+    }
+  }
+}
