@@ -113,6 +113,10 @@
   border-radius: 50%;
 }
 
+.recipe.dark h4::after {
+  background: green;
+}
+
 .recipe ul.ingredient-list {
   list-style: none;
 }

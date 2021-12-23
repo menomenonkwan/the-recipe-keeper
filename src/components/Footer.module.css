@@ -3,3 +3,9 @@
   text-align: center;
   padding: 20px;
 }
+
+.footer.dark {
+  filter: brightness(85%);
+  box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.35);
+  color: whitesmoke;
+}

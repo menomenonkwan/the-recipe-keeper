@@ -1,8 +1,9 @@
 .theme-container {
   width: 100%;
+  padding-top: 5px;
 }
 
-.theme-container.dark {
+.dark {
   box-shadow: inset 0 0 0 99999px rgba(0, 0, 0, 0.9);
 }
 

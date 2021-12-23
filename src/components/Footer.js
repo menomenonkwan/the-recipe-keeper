@@ -3,13 +3,13 @@ import { useTheme } from '../hooks/useThemeContext';
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const { color } = useTheme();
+  const { color, mode } = useTheme();
   const today = new Date();
   const year = today.getFullYear();
 
   return (
     <footer
-      className={styles.footer}
+      className={`${styles.footer} ${styles[`${mode}`]}`}
       style={{ background: color }}
     >
       <p>&copy; {year} Food Lovers & Co.</p>      

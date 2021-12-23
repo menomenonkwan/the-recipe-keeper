@@ -21,7 +21,7 @@ export default function ThemeSelector() {
 
   return (
     <div
-      className={`${mode}`}
+      className={`${styles['theme-container']} ${styles[mode]}`}
       style={{ background: color }}
     >
       <div className={styles["theme-selector"]}>

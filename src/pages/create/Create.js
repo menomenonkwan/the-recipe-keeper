@@ -184,7 +184,7 @@ export default function Create() {
           </label>
         </fieldset>
 
-        <button type="submit" className="btn">Submit</button>
+        <button type="submit" className="btn" style={{ margin: '30px auto' }} >Submit</button>
       </form>
     </div>
   )

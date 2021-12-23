@@ -11,12 +11,12 @@ import Searchbar from './Searchbar';
 import styles from './Navbar.module.css';
 
 export default function Navbar({ open, setOpen }) {
-  const { color } = useTheme();
+  const { color, mode } = useTheme();
   const { user } = useAuthContext();
   const { logout } = useLogout();
 
   return (
-    <div className={styles.navbar}
+    <div className={`${styles.navbar} ${styles[`${mode}`]}`}
     style={{ background: color }}
     >
       <nav>

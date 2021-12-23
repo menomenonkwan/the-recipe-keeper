@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
-// import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../hooks/useThemeContext";
 import { projectFirestore } from "../../firebase/config";
 import Loader from "react-loader-spinner";
 import garbage from '../../assets/garbage.svg';
@@ -30,7 +30,7 @@ const TextLine = ({ item }) => {
 export default function Recipe() {
   const { id } = useParams();
   const { user } = useAuthContext();
-  // const { mode } = useTheme();
+  const { color, mode } = useTheme();
   const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState(null);
@@ -85,7 +85,7 @@ export default function Recipe() {
         width={300}
         />}
       {recipe && 
-        <div className={styles.recipe}>
+        <div className={`${styles.recipe} ${styles[mode]}`}>
           <div className={styles.frame}>
             <img src={ recipe.imageURL || "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"} alt={ recipe.title } />
           </div>
@@ -96,7 +96,7 @@ export default function Recipe() {
             onClick={() => handleDelete(id)}
           />}
         {/* <button onClick={handleUpdate}>update</button> */}
-          <h2>{ recipe.title }</h2>
+          <h2 style={{ color: color }}>{ recipe.title }</h2>
           <em>{ recipe.cookingTime }</em>
           <h4>Ingredients:</h4>
           <ul className={styles["ingredient-list"]}>

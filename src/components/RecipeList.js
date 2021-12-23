@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import Masonry from 'react-masonry-css'
+import { useTheme } from "../hooks/useThemeContext";
+
 // styles
 import styles from './RecipeList.module.css';
 
 export default function RecipeList({ recipies }) {
+  const { mode } = useTheme();
 
   const breakpointColumnsObj = {
     default: 4,
@@ -28,7 +31,7 @@ export default function RecipeList({ recipies }) {
       columnClassName={styles["my-masonry-grid_column"]}
     >
       {sortedRecipies.map(recipe => (
-        <div key={recipe.id} className={styles["recipe-card"]}>
+        <div key={recipe.id} className={`${styles["recipe-card"]} ${styles[mode]}`}>
           <img src={ recipe.imageURL || "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"} alt={ recipe.title } />
           <h2>{ recipe.title }</h2>
           <p>{ recipe.cookingTime }</p>
