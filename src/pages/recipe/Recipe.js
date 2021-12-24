@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from "../../hooks/useThemeContext";
 import { projectFirestore } from "../../firebase/config";
+import { useAuthContext } from "../../hooks/useAuthContext";
+// components
 import Loader from "react-loader-spinner";
 import garbage from '../../assets/garbage.svg';
-
 // styles
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import styles from './Recipe.module.css';
-import { useAuthContext } from "../../hooks/useAuthContext";
 
 const TextLine = ({ item }) => {
   const [checked, setChecked] = useState(false);
@@ -64,15 +64,6 @@ export default function Recipe() {
 
     navigate('/');
   }
-
-  // const handleUpdate = () => {
-  //   projectFirestore
-  //     .collection('recipies')
-  //     .doc(id)
-  //     .update({
-  //       title: 'Something completely different'
-  //     })
-  // }
   
   return (
     <div className="wrapper">
@@ -95,7 +86,9 @@ export default function Recipe() {
             alt="delete icon" 
             onClick={() => handleDelete(id)}
           />}
-        {/* <button onClick={handleUpdate}>update</button> */}
+          {user && 
+            <Link to={`/update/${id}`} className={`${styles.update} btn`}>update</Link>
+          }
           <h2 style={{ color: color }}>{ recipe.title }</h2>
           <em>{ recipe.cookingTime }</em>
           <h4>Ingredients:</h4>

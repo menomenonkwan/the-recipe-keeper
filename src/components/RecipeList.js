@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import Masonry from 'react-masonry-css'
 import { useTheme } from "../hooks/useThemeContext";
-
 // styles
 import styles from './RecipeList.module.css';
+import Masonry from 'react-masonry-css'
 
 export default function RecipeList({ recipies }) {
   const { mode } = useTheme();

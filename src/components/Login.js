@@ -40,7 +40,7 @@ export default function Login({ open, setOpen }) {
         </label>
         {!isLoading && <button className="btn" type="submit">Login</button>}
         {isLoading && <button className="btn" disabled>Loading</button>}
-        {error && <p>{ error }</p>}
+        {error && <p className='error'>{ error }</p>}
       </form>
     </div>
   )

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router"
+import { projectFirestore } from "../../firebase/config";
+// components
 import Loader from "react-loader-spinner";
 import RecipeList from "../../components/RecipeList";
-
 // styles
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { projectFirestore } from "../../firebase/config";
 
 export default function Search() {
   const search = useLocation().search;

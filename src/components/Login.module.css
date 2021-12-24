@@ -1,7 +1,18 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .login-form {
   position: relative;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
   opacity: 1;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   width: 100%;
   max-width: 1250px;
@@ -16,7 +27,12 @@
   top: 0;
   right: 0;
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
 }
 .login-form label {
@@ -37,6 +53,31 @@
   outline: 2px solid var(--orange, transparent);
 }
 .hidden {
+  -webkit-transform: translateX(3vw);
+  -ms-transform: translateX(3vw);
   transform: translateX(3vw);
   opacity: 0;
+}
+
+@media (max-width: 500px) {
+  .login-form {
+    z-index: 2;
+  }
+  .login-form form {
+    max-width: unset;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+  }
+
+  .login-form span {
+    color: var(--white, whitesmoke);
+  }
+  .hidden {
+    -webkit-transform: translateX(100vw);
+    -ms-transform: translateX(100vw);
+    transform: translateX(100vw);
+    opacity: 0;
+  }
 }

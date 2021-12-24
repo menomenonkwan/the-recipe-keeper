@@ -1,33 +1,9 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { projectFirestore } from "../../firebase/config";
+import { generateKeywords } from "../../utils/helpers";
 // styles
 import styles from './Create.module.css';
-
- const createKeyWords = (name) => {
-  const arrName = [];
-  let curName = '';
-  name.split('').forEach(letter => {
-    curName += letter;
-    arrName.push(curName.toLowerCase());
-  });
-  return arrName;
-}
-
- const generateKeywords = ( title = '', ingredients = []) => {
-  const keywordTitle = createKeyWords(title);
-  const keywords = [ ...keywordTitle ];
- 
-  const keywordIngredients = ingredients.map(ing => createKeyWords(ing)).flat();
-  
-  keywordIngredients.forEach(word => {
-    if (!keywords.includes(word)) {
-      keywords.push(word)
-    }
-  });
-
-  return keywords;
-}
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -38,7 +14,7 @@ export default function Create() {
   const [directions, setDirections] = useState('');
   const [cookingTime, setCookingTime] = useState('');
   const [notes, setNotes] = useState('');
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
   const [imageURL, setImageURL] = useState('');
   const [keyWords, setKeyWords] = useState([]);
   const inputRef = useRef(null);
@@ -47,7 +23,8 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image, imageURL, keyWords };
+    const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, imageURL, keyWords };
+    // const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image, imageURL, keyWords };
 
     try {
       await projectFirestore
@@ -70,6 +47,11 @@ export default function Create() {
 
     inputRef.current.focus();
     setIngredient('');
+  }
+
+  const handleRemoveIngredient = (e) => {
+    e.preventDefault();
+    setIngredients(prev => prev.filter(ing => ing !== e.target.textContent))
   }
 
   return (
@@ -104,7 +86,9 @@ export default function Create() {
           </label>
         </fieldset>
         {ingredients.length > 0 &&
-          <p className={styles["ingredients-list"]}>Ingredients: {ingredients.map(item => <span key={item}>{item}, </span>)}</p>
+          <ul className={styles["ingredients-list"]}>
+            {ingredients.map(item => <li key={item} className={styles['ing-list']} onClick={handleRemoveIngredient}>{item}</li>)}
+          </ul>
         }
 
         <fieldset>
@@ -142,7 +126,7 @@ export default function Create() {
 
         <fieldset>
           <label>
-            <p>Time To Cook:</p>
+            <p>Time To Cook <em>(minutes)</em>:</p>
             <input 
               type="number"
               onChange={(e) => setCookingTime(e.target.value)}

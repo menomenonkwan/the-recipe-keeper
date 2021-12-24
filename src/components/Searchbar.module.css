@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .search-bar {
   margin: 0 30px;
 }
@@ -20,7 +27,7 @@
   border-radius: 0 4px 4px 0;
 }
 
-/* @media (max-width: 900px) {
+@media (max-width: 900px) {
   .search-bar {
     margin: auto;
   }
@@ -33,9 +40,9 @@
     width: 80%;
     max-width: 300px;
   }
-} */
+}
 
-/* @media (max-width: 500px) {
+@media (max-width: 500px) {
   .search-bar form {
     width: 400px;
     max-width: 90%;
@@ -45,4 +52,4 @@
     width: 65%;
     max-width: 300px;
   }
-} */
+}

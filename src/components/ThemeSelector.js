@@ -1,8 +1,9 @@
 import { useTheme } from "../hooks/useThemeContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+// components
 import icon from '../assets/mode-toggle.svg';
 // styles
 import styles from './ThemeSelector.module.css';
-import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function ThemeSelector() {
   const { color, mode, changeColor, changeMode } = useTheme();

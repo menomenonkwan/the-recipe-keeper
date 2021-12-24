@@ -13,9 +13,11 @@ import Login from './components/Login';
 import Footer from './components/Footer';
 import background from './assets/background.jpg';
 import ThemeSelector from './components/ThemeSelector';
+import Searchbar from './components/Searchbar';
 
 // styles
 import './App.css';
+import Update from './pages/update/Update';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -38,6 +40,7 @@ function App() {
           <Login open={open} setOpen={setOpen} />
 
           <div className={`container ${mode}`}>
+            <div className="mobile-search"><Searchbar /></div>
             <Routes>
               <Route 
                 path="/" 
@@ -50,6 +53,10 @@ function App() {
               <Route 
                 path="/search" 
                 element={ <Search /> } 
+              />
+              <Route 
+                path="/update/:id" 
+                element={user ? <Update /> : <Navigate to="/" />} 
               />
               <Route 
                 path="/recipies/:id" 

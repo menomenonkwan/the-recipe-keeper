@@ -1,9 +1,17 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .create-form {
   padding: 15px 25px;
   background: #555;
   max-width: 500px;
   margin: 0 auto;
   color: var(--white, white);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -40,6 +48,8 @@
 }
 
 .create-form .ingredient {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -57,10 +67,22 @@
   text-transform: uppercase;
 }
 
-.create-form p.ingredients-list {
+.create-form .ingredients-list {
   font-size: 0.9em;
-  margin-top: 2px;
+  margin-top: 10px;
   color: #dedede;
+}
+
+.create-form .ing-list {
+  cursor: pointer;
+  margin: 0 auto;
+  width: 50%;
+  padding: 2px 0;
+}
+
+.create-form .ing-list:hover {
+  color: var(--orange, red);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .create-form .btn {

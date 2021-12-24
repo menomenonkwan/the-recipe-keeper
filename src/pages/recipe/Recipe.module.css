@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .recipe {
   background: var(--white, white);
   width: 90%;
@@ -5,6 +12,7 @@
   margin: 0 auto;
   padding: 20px;
   overflow: hidden;
+  -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.12);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.12);
   position: relative;
 }
@@ -51,6 +59,7 @@
   width: 100%;
   max-width: 300px;
   overflow: hidden;
+  -webkit-box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 15px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -133,6 +142,8 @@
 }
 
 .recipe ul.ingredient-list li {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
 }
@@ -151,6 +162,7 @@
 .check {
   color: #ddd;
   text-decoration: line-through;
+  -webkit-text-decoration-color: var(--orange);
   text-decoration-color: var(--orange);
   font-style: italic;
 }
@@ -163,13 +175,56 @@
   top: 20px;
   right: 20px;
   cursor: pointer;
+  -webkit-filter: invert(50%);
   filter: invert(50%);
   padding: 5px;
   border-radius: 50%;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   z-index: 1;
 }
 
 .garbage:hover {
   background: rgba(0, 0, 0, 0.2);
+}
+
+.recipe .update {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: var(--black, black);
+  border-color: var(--black, black);
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.recipe .update:hover {
+  color: var(--white, whitesmoke);
+  border-color: var(--orange);
+}
+
+@media (max-width: 650px) {
+  .recipe .update {
+    position: unset;
+    display: block;
+    margin: 20px auto;
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+
+  .recipe .garbage {
+    position: unset;
+    background: var(--orange, rgba(0, 0, 0, 0.2));
+    padding: 10px;
+    -webkit-filter: invert(0);
+    filter: invert(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .recipe {
+    width: unset;
+  }
 }
