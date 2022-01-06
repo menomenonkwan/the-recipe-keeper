@@ -78,7 +78,14 @@ export default function Recipe() {
       {recipe && 
         <div className={`${styles.recipe} ${styles[mode]}`}>
           <div className={styles.frame}>
-            <img src={ recipe.imageURL || "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"} alt={ recipe.title } />
+            <img 
+              src={ 
+                recipe.image ? recipe.image :
+                recipe.imageURL ? recipe.imageURL :
+                "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"
+              } 
+              alt={ recipe.title } 
+            />
           </div>
           {user && <img 
             className={styles.garbage}
@@ -125,6 +132,9 @@ export default function Recipe() {
           <ul className={styles["text-list"]}>
             {recipe.notes.split('.').map((line,i) => <TextLine key={i} item={line}/>)}
           </ul>
+          {recipe.recipeURL &&
+            <button className={`btn ${styles.link}`}><a href={recipe.recipeURL}>view website</a></button>
+          }
         </div>
       }      
     </div>

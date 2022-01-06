@@ -31,8 +31,15 @@ export default function RecipeList({ recipies }) {
     >
       {sortedRecipies.map(recipe => (
         <div key={recipe.id} className={`${styles["recipe-card"]} ${styles[mode]}`}>
-          <img src={ recipe.imageURL || "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"} alt={ recipe.title } />
-          <h2>{ recipe.title }</h2>
+          <img 
+            src={
+              recipe.image ? recipe.image :
+              recipe.imageURL ? recipe.imageURL :
+              "https://www.eatthis.com/wp-content/uploads/sites/4/2020/09/mixed-vegetables.jpg"
+            }
+            alt={ recipe.title } 
+          />
+            <h2>{ recipe.title }</h2>
           <p>{ recipe.cookingTime }</p>
           <h4>{ recipe.ingredients.length } ingredients</h4>
           <Link to={`/recipies/${recipe.id}`} className={`btn ${styles["btn-link"]}`}>Cook This</Link>

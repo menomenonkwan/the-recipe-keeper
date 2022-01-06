@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { projectFirestore } from "../../firebase/config";
+import { projectFirestore, projectStorage } from "../../firebase/config";
 import { generateKeywords } from "../../utils/helpers";
 // styles
 import styles from './Create.module.css';
@@ -14,7 +14,9 @@ export default function Create() {
   const [directions, setDirections] = useState('');
   const [cookingTime, setCookingTime] = useState('');
   const [notes, setNotes] = useState('');
-  // const [image, setImage] = useState(null);
+  const [recipeURL, setRecipeURL] = useState('');
+  const [image, setImage] = useState(null);
+  const [imageError, setImageError] = useState(null);
   const [imageURL, setImageURL] = useState('');
   const [keyWords, setKeyWords] = useState([]);
   const inputRef = useRef(null);
@@ -23,9 +25,15 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, imageURL, keyWords };
-    // const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image, imageURL, keyWords };
-
+    // const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, recipeURL, imageURL, keyWords };
+    
+    // upload user thumbnail
+    const uploadPath = `images/${image.name}`;
+    const img = await projectStorage.ref(uploadPath).put(image);
+    const imgUrl = await img.ref.getDownloadURL();
+    
+    const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image: imgUrl, imageURL, keyWords };
+    
     try {
       await projectFirestore
         .collection('recipies')
@@ -52,6 +60,23 @@ export default function Create() {
   const handleRemoveIngredient = (e) => {
     e.preventDefault();
     setIngredients(prev => prev.filter(ing => ing !== e.target.textContent))
+  }
+
+  const handleFileChange = (e) => {
+    setImage(null);
+    let selected = e.target.files[0];
+
+    if (!selected.type.includes('image')) {
+      setImageError('Selected file must be an image');
+      return;
+    }
+    if (selected.size > 1000000) {
+      setImageError('Image file size must be less than 1Mb');
+      return;
+    }
+
+    setImageError(null);
+    setImage(selected);
   }
 
   return (
@@ -149,15 +174,27 @@ export default function Create() {
         </fieldset>
 
         <fieldset>
-          {/* <label>
+          <label>
+            <p>Recipe URL:</p>
+            <input
+              type="text" 
+              onChange={(e) => setRecipeURL(e.target.value)}
+              value={recipeURL}
+              rows="4" 
+            />
+          </label>
+        </fieldset>
+
+        <fieldset className={styles['image-select']}>
+          <label>
             <p>Image:</p>
             <input 
               type="file" 
-              accept=".png, .jpg, .jpeg"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={handleFileChange}
             />
+            {imageError && <div className='error'>{imageError}</div>}
           </label>
-          <p> - or - </p> */}
+          <p> - or - </p>
           <label>
             <p>Image URL:</p>
             <input 

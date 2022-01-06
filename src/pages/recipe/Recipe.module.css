@@ -205,6 +205,20 @@
   border-color: var(--orange);
 }
 
+.link {
+  margin: 20px auto;
+  border: 2px solid var(--orange, black);
+}
+
+.link a {
+  color: var(--orange);
+  font-weight: bolder;
+}
+
+.link a:hover {
+  color: var(--white, whitesmoke);
+}
+
 @media (max-width: 650px) {
   .recipe .update {
     position: unset;
