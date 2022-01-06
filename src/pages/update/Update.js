@@ -89,7 +89,7 @@ export default function Update() {
     const img = await projectStorage.ref(uploadPath).put(image);
     const imgUrl = await img.ref.getDownloadURL();
 
-    const updatedDoc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image: imgUrl, recipeURL, imageURL, keyWords };
+    const updatedDoc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image: imgUrl, recipeURL: recipeURL || '', imageURL, keyWords };
     
     try {
       await projectFirestore
@@ -118,8 +118,6 @@ export default function Update() {
 
     setImageError(null);
     setImage(selected);
-    console.log(image);
-    console.log(selected);
   }
 
   return (
