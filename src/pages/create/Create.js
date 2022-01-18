@@ -28,11 +28,15 @@ export default function Create() {
     // const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, recipeURL, imageURL, keyWords };
     
     // upload user thumbnail
-    const uploadPath = `images/${image.name}`;
-    const img = await projectStorage.ref(uploadPath).put(image);
-    const imgUrl = await img.ref.getDownloadURL();
-    
-    const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image: imgUrl, imageURL, keyWords };
+    let imgUrl = null;
+    if (image) {
+
+      const uploadPath = `images/${image.name}`;
+      const img = await projectStorage.ref(uploadPath).put(image);
+      imgUrl = await img.ref.getDownloadURL();
+    }
+      
+      const doc = { title, ingredients, preparation, sauce, directions, cookingTime: cookingTime + ' minutes', notes, image: imgUrl, imageURL, keyWords };
     
     try {
       await projectFirestore
